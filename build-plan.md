@@ -1,8 +1,8 @@
 # Build Plan
 
 ### Environment Setup
-- **Backend Language:** Node.js or Python Flask.
-- **Frontend Framework:** React.js or simple HTML/CSS/JavaScript.
+- **Backend Language:** Node.js
+- **Frontend Framework:** React.js
 - **Database:** MySQL or PostgreSQL.
 
 ---
