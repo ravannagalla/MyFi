@@ -1,53 +1,25 @@
-# Build Plan
+## Teller API Integration
 
-### Environment Setup
-- **Backend Language:** Node.js
-- **Frontend Framework:** React.js
-- **Database:** MySQL or PostgreSQL.
+### Banks
+1. **Set Up Access**: Register for a Teller account and get your API key.
+2. **Initialize API**: Use the API key to initialize the Teller API client in your application.
+   ```javascript
+   const teller = require('teller-api-client');
+   teller.initialize({ apiKey: 'YOUR_API_KEY' });
+   ```
+3. **Fetch Banks**: Make an API request to retrieve available banks.
+   ```javascript
+   teller.banks.list().then((banks) => {
+       console.log(banks);
+   });
+   ```
 
----
-
-### Core Features
-
-1. **Login (User Authentication)**
-   - Allow users to register and log in securely.
-   - Use JWT-based authentication or OAuth2.0.
-
-2. **Transactions Screen**
-   - Fetch and display user transaction history.
-   - API endpoint: `GET /transactions`.
-
-3. **Connections Screen**
-   - Let users add bank connections (e.g., using Plaid).
-   - API endpoint: `POST /connections`.
-
-4. **Accounts Screen**
-   - Show all user bank accounts and credit cards.
-   - API endpoint: `GET /accounts`.
-
-5. **Statements Screen**
-   - Show monthly aggregate statements.
-   - API endpoint: `GET /statements/:month`.
-
----
-
-### Database Design
-- **Users Table:** `id`, `name`, `email`, `password`
-- **Banks Table:** `id`, `bank_name`, `logo`
-- **Accounts Table:** `id`, `user_id`, `bank_id`, `account_type`, `account_balance`
-- **Transactions Table:** `id`, `account_id`, `date`, `amount`, `description`, `status`
-- **Statements Table:** `id`, `user_id`, `month`, `income`, `expenses`
-
----
-
-### Testing
-- Unit test each API route.
-- Use Jest or Mocha for backend testing.
-- Functional testing using tools like Selenium.
-
----
-
-### Deployment
-- Deploy backend to Heroku, AWS EB, or similar platforms.
-- Host frontend on Netlify or Vercel.
-- Use managed databases like AWS RDS or Google Cloud SQL.
+### Transactions
+1. **Connect Bank Account**: Allow users to connect their bank account through the Teller interface.
+2. **Authenticate**: Use OAuth or other authentication methods provided by Teller to secure user connections.
+3. **Fetch Transactions**: Utilize the Teller API to pull transaction data for connected accounts.
+   ```javascript
+   teller.accounts.getTransactions('account_id').then((transactions) => {
+       console.log(transactions);
+   });
+   ```
